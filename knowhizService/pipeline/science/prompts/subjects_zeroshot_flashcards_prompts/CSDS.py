@@ -7,64 +7,37 @@ class CSDS_ZeroshotPrompts(ZeroshotPrompts):
     •    Data Science
     """
     @staticmethod
-    # Step 5: Flashcards expansion generation
     def flashcards_expansion_generation_prompt():
         """
-        Prompt for generating flashcards expansions for each keyword.
+        Prompt for generating flashcards expansions for each keyword,
+        always including at least one code snippet.
         """
-        prompt = \
-        """
+        return """
         Complete the task step by step:
 
         For the course: {course_name}, chapter: {chapter_name}, provide an Example section for the keyword: {keyword}.
         {keyword}'s definition is: {definition}.
 
-        Make sure the expansions are accurate.
+        **Key requirements:**
+        1. You are an expert in Computer Science & Data Science.
+        2. **Always include at least one code snippet** relevant to {keyword}, formatted in Markdown fenced code blocks:
+           ```<language>
+           // your code here
+           ```
+        3. The section name must be **Example** and should **not** repeat the definition.
+        4. Use step‑by‑step explanations only when they clearly improve understanding.
+        5. If you show formulas, wrap them in LaTeX double‑dollar syntax:
+           $$
+           E = mc^2
+           $$
+        6. If you include tables, use Markdown tables as follows:
+           | A | B | C |
+           |--|--|--|
+           |…|…|…|
+        7. Do **not** include literal backticks around your final Markdown; just output ready‑to‑render Markdown.
+
         Max words for expansion: {expansion_length}
-        It should formated as markdown:
-        {markdown_format_string}
 
-        1. The section name is 'Example', which only inludes a real world example to help memerize and understand the keyword in {course_name}.
-        2. Please do not provide the definition of the keyword in the example.
-        3. Within the example, provide a step-by-step breakdown only if it significantly enhances memorization and understanding of the concept.
-        4. Within the example, if you need to display formulas, include them in LaTeX syntax formatted in markdown, as shown below:
-            ----------------
-            $$
-            \frac{{a}}{{b}} = \frac{{c}}{{d}}
-            $$
-            ----------------
-        5. Within the example, if you need to display tables, format them using markdown as follows:
-            ----------------
-            ## Table
-
-            | Header 1   | Header 2   | Header 3   |
-            |------------|------------|------------|
-            | Row 1 Col 1| Row 1 Col 2| Row 1 Col 3|
-            | Row 2 Col 1| Row 2 Col 2| Row 2 Col 3|
-            | Row 3 Col 1| Row 3 Col 2| Row 3 Col 3|
-            ----------------
-
-        6. Do not include "```markdown" in the response. Final whole response must be in correct markdown format.
-        7. Specify the text with intuitive markdown syntax like bold, italic, etc, bullet points, etc.
-        8. For in-line formulas, use the syntax: $E = mc^2$. Remember must use double ```$``` for display formulas.
+        Format the entire response as valid Markdown.
         """
-        return prompt
-    # def flashcards_expansion_generation_prompt():
-    #     """
-    #     Prompt for generating flashcards expansions for each keyword.
-    #     """
-    #     prompt = \
-    #     """
-    #     For the course: {course_name}, chapter: {chapter_name},
-    #     {keyword}'s definition in this course is: {definition},
-    #     Provide the more detailed explanation in addition to its definition.
 
-    #     Key requirements:
-    #     1. The course is about Data Science & Computer Science,
-    #         organize the expansions in the style of a wiki page,
-    #         and try to include more code snippets in Markdown syntax.
-    #     2. The wiki page should focus more on practical and hands-on oriented content, do not talk about conceptional exlanations.
-    #     3. The wiki page should be at most 150 words long.
-    #     4. For code snippets, must use triple backticks "```" for code blocks so we have nice display in markdown.
-    #     """
-    #     return prompt
