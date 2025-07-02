@@ -21,14 +21,14 @@ class BusinessEconomics_ZeroshotPrompts(ZeroshotPrompts):
 
         Return only a valid **JSON** object like:
 
-        {
+        {{
           "Course name": "Your Course Title Here",
           "Chapters": [
             "📘 Chapter 1 Title",
             "📙 Chapter 2 Title",
             ...
           ]
-        }
+        }}
 
         ✦ If the course relates to _macroeconomics_, include chapters like: GDP, IS-LM, AD-AS, inflation, monetary policy, etc.
         ✦ If it relates to _microeconomics_, consider: supply & demand, elasticity, utility, market structures, pricing strategies, etc.
