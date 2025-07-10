@@ -24,6 +24,13 @@ class BusinessEconomics_QuizPrompts(QuizPrompts):
           - Institutional features (PBoC, Federal Reserve, ECB)
           - Monetary policy goals: inflation, employment, exchange rates, stability
 
+        ✦ If the topic is *Foundations of financial risk management*, refer to:
+          - Basic concepts of financial risk management
+          - Portfolio risk management
+          - Advanced risk management
+          - Financial crisis and financial disasters
+          - Garp code of conduct
+
         Requirements:
         - Use an exam-oriented tone, based on textbooks like *Pindyck*, *Dornbusch*, or standard central banking references
         - Start the question with: *Which of the following best defines...* or *What is the correct explanation of...*
@@ -60,6 +67,13 @@ class BusinessEconomics_QuizPrompts(QuizPrompts):
           - Use of interest rate tools or liquidity management
           - Transmission of monetary policy into the real economy
 
+        ✦ If the topic is *Foundations of financial risk management*, refer to:
+          - Basic concepts of financial risk management
+          - Portfolio risk management
+          - Advanced risk management
+          - Financial crisis and financial disasters
+          - Garp code of conduct
+
         Guidelines:
         - The question stem should be realistic and policy-grounded: e.g., *If the central bank raises interest rates...*
         - Include **1 correct answer** and **3 distractors** based on common student mistakes
@@ -89,6 +103,7 @@ class BusinessEconomics_QuizPrompts(QuizPrompts):
         ✦ *Microeconomics*: supply/demand, cost structure, market behavior, welfare, consumer theory, game theory  
         ✦ *Macroeconomics*: output determination, fiscal/monetary policy, inflation, unemployment, economic growth  
         ✦ *Central Banking*: bank roles, policy tools, monetary transmission, institutional frameworks, Basel regulations
+        ✦ *Foundations of financial risk management*: basic concepts of financial risk management, portfolio risk management, advanced risk management, financial crisis and financial disasters, Garp code of conduct
 
         Instructions:
         - Use mixed formats (MCQ, True/False, Fill-in-the-blank)

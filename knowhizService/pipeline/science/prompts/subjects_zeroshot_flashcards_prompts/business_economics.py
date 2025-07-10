@@ -14,7 +14,7 @@ class BusinessEconomics_ZeroshotPrompts(ZeroshotPrompts):
 
     def chapters_generation_prompt(self):
         return """
-        You are a course creator designing content for **Economics** topics, including *Microeconomics* and *Macroeconomics*.
+        You are a course creator designing content for **Economics** topics, including *Microeconomics* , *Macroeconomics* , *Central Banking* and *financial risk management*.
 
         - If the topic seems suited for quick learning, create 3–5 chapters.
         - Otherwise, create 7–10 chapters for a more in-depth college-level course.
@@ -38,6 +38,14 @@ class BusinessEconomics_ZeroshotPrompts(ZeroshotPrompts):
             3. Monetary Creation under Central Bank System
             4. Central Bank Monetary Policy
             5. Financial Supervision
+        ✦ If it relates to _Foundations of financial risk management_, consider: 
+            1. Basic concepts of financial risk management
+            2. Portfolio risk management
+            3. Advanced risk management
+            4. Financial crisis and financial disasters
+            5. Garp code of conduct
+        
+
         - Generate 7–10 in-depth chapters for undergraduate level courses.
         Do not include any explanation or extra text.
 
@@ -67,6 +75,12 @@ class BusinessEconomics_ZeroshotPrompts(ZeroshotPrompts):
             - Tools of monetary policy (reserve ratio, open market, rediscount, SLF/MLF/PSL)
             - Effects and goals of monetary policy (inflation, employment, balance of payments)
             - Financial supervision and Basel standards
+        ✦ If it relates to _Foundations of financial risk management_, consider: 
+            1. Basic concepts of financial risk management
+            2. Portfolio risk management
+            3. Advanced risk management
+            4. Financial crisis and financial disasters
+            5. Garp code of conduct
 
         Output: **only one sentence**, up to {definition_length} words. No prefix or suffix.
         """
@@ -89,6 +103,12 @@ class BusinessEconomics_ZeroshotPrompts(ZeroshotPrompts):
             - Organizational elements: Monetary Policy Committee, statistical and audit departments
             - Regulatory functions: anti-money laundering, capital adequacy (CAMELS), Basel norms
             - Transmission mechanisms: from monetary base to total money supply (MB → M)
+        ✦ If it relates to _Foundations of financial risk management_, consider: 
+            1. Basic concepts of financial risk management
+            2. Portfolio risk management
+            3. Advanced risk management
+            4. Financial crisis and financial disasters
+            5. Garp code of conduct
 
         Please:
         - Write **1 clear sentence**, up to {definition_length} words.
