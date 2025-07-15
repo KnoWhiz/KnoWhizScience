@@ -5,26 +5,22 @@ class Language_ZeroshotPrompts(ZeroshotPrompts):
     # Step 2: Chapters generation
     def chapters_generation_prompt():
         """
-        Prompt for generating chapters based on the zero-shot topic.
+        Prompt for generating vocabulary-based chapters for a language learning topic.
         """
-        prompt = \
-        """
-        You are a great language teacher,
-        Here is a language learning topic: {extracted_course_name_domain}
-        Generate a list of chapters for learning this topic. Avoid including any methodological chapter topics.
-        All chapters should be about certain group of words / phrases. They can be grouped as usage cases, or grammar properties
-
-        Note the "Course name" key should exactly match the topic or a suitably rephrased version.
-
-        Output your response in **valid JSON format only**, using the structure:
-
-        {{
-        "Course name": "Your Course Title Here",
-        "Chapters": [
-            "🗂️ Chapter 1",
-            "🧠 Chapter 2",
-            ...
-        ]
-        }}
-        """
-        return prompt
+        return (
+            "You are a skilled language instructor. "
+            "Given the learning topic '{extracted_course_name_domain}', generate engaging chapters. "
+            "Each chapter should focus on a coherent group of words or phrases by usage scenario, grammatical property, or thematic set (e.g., greetings, travel vocabulary, past-tense verbs). "
+            "Do NOT include methodology, teaching strategies, or meta-topics—only content clusters."
+            "\n\n"
+            "Ensure the JSON 'Course name' matches or suitably rephrases the topic. "
+            "Output ONLY valid JSON with this exact structure:\n"
+            "{\n"
+            "  \"Course name\": \"<Course Title>\",\n"
+            "  \"Chapters\": [\n"
+            "    \"Chapter 1: <Title>\",\n"
+            "    \"Chapter 2: <Title>\",\n"
+            "    ...\n"
+            "  ]\n"
+            "}\n"
+        )
