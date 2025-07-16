@@ -12,7 +12,7 @@ class Language_ZeroshotPrompts(ZeroshotPrompts):
         You are a great language teacher,
         Here is a language learning topic: {extracted_course_name_domain}
         Generate a list of chapters for learning this topic. Avoid including any methodological chapter topics.
-        All chapters should be about certain group of words / phrases. They can be grouped as usage cases, or grammar properties
+        Each chapter should focus on a coherent group of words or phrases by usage scenario, grammatical property, or thematic set (e.g., greetings, travel vocabulary, past-tense verbs).
 
         Note the "Course name" key should exactly match the topic or a suitably rephrased version.
 
