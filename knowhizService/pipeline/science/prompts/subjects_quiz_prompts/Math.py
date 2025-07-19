@@ -21,17 +21,17 @@ class Math_QuizPrompts(QuizPrompts):
         - Include a brief explanation for why the correct answer is right and the others are not.
 
         Example output structure:
-        {
+        {{
           "question": "...",
-          "choices": {
+          "choices": {{
             "A": "...",
             "B": "...",
             "C": "...",
             "D": "..."
-          },
+          }},
           "correct_answer": "B",
           "explanation": "..."
-        }
+        }}
         """
     )
 
@@ -50,17 +50,17 @@ class Math_QuizPrompts(QuizPrompts):
         - Include a brief explanation for why the correct answer is right and the others are not.
 
         Example output structure:
-        {
+        {{
           "question": "...",
-          "choices": {
+          "choices": {{
             "A": "...",
             "B": "...",
             "C": "...",
             "D": "..."
-          },
+          }},
           "correct_answer": "A",
           "explanation": "..."
-        }
+        }}
         """
     )
 
