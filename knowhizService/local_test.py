@@ -84,7 +84,7 @@ def process_test_cases(test_cases):
 
 if __name__ == "__main__":
     test_cases = [
-        (True, """level:"Beginner",subject:"",text:"I want to learn Calculus""", None, None),
+        (True, """level:"Beginner",subject:"",text:"I want to learn microeconomics""", None, None),
         # (True, """level:"pre-college",subject:"",text:"500 most frequent Chinese words""", None, None),
         #(True, """level:"Beginner",subject:"",text:"College Level Linear Algebra.""", None, None),
         #(True, "I want to learn Introduction to Law", None, None),

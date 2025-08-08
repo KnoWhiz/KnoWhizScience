@@ -2,130 +2,115 @@ from pipeline.science.prompts.quiz_prompts import QuizPrompts
 
 class BusinessEconomics_QuizPrompts(QuizPrompts):
     """
-    This class is used to generate prompts for the Business Economics domain
-    •	Business
-        •	Accounting
-        •	Finance
-        •	Marketing
-        •	Management
-        •	Business Law
-	•	Economics
-        •	Microeconomics
-        •	Macroeconomics
+    Prompt generator for Business Economics quizzes.
+    Covers Microeconomics, Macroeconomics, and Central Banking under unified logic.
     """
-    def get_subject_prompt_class(self):
-        course_text = self.course_name_domain.get("text", "").lower()
-        if "macroeconomics" in course_text or "macro" in course_text:
-            return self.Macro
-        elif "microeconomics" in course_text or "micro" in course_text:
-            return self.Micro
-        else:
-            return super()
 
     def multiple_choice_definition_quiz_generation_prompt(self):
-        subject_cls = self.get_subject_prompt_class()
-        return subject_cls.multiple_choice_definition_quiz_generation_prompt()
+        return """
+        You are a university-level Economics instructor creating **definition-based multiple-choice questions**.
+
+        Given the course: {course_name}, chapter: {chapter_name}, and concept: {keyword}, generate one question that tests the student's understanding of the **term’s definition**.
+
+        ✦ If the topic is *Microeconomics*, include terms like:
+          - supply & demand, elasticity, utility, cost curves, market structures, Nash equilibrium
+
+        ✦ If the topic is *Macroeconomics*, focus on:
+          - GDP, IS-LM, AD-AS, inflation, fiscal/monetary policy, unemployment, multiplier effect
+
+        ✦ If the topic is *Central Banking*, refer to:
+          - Central bank functions (currency issuance, lender of last resort)
+          - Tools (reserve ratio, open market operations, rediscount rate, MLF/SLF/PSL)
+          - Institutional features (PBoC, Federal Reserve, ECB)
+          - Monetary policy goals: inflation, employment, exchange rates, stability
+
+        ✦ If the topic is *Foundations of financial risk management*, refer to:
+          - Basic concepts of financial risk management
+          - Portfolio risk management
+          - Advanced risk management
+          - Financial crisis and financial disasters
+          - Garp code of conduct
+
+        Requirements:
+        - Use an exam-oriented tone, based on textbooks like *Pindyck*, *Dornbusch*, or standard central banking references
+        - Start the question with: *Which of the following best defines...* or *What is the correct explanation of...*
+        - Provide exactly **1 correct answer** and **3 plausible distractors** based on common student confusion
+
+        Format the output as JSON:
+
+        ```json
+        {{
+          "question": "...",
+          "options": ["A...", "B...", "C...", "D..."],
+          "answer": "C",
+          "explanation": "Explain briefly why C is correct and others are not"
+        }}
+        ```
+
+        Output only the JSON.
+        """
 
     def multiple_choice_expansion_quiz_generation_prompt(self):
-        subject_cls = self.get_subject_prompt_class()
-        return subject_cls.multiple_choice_expansion_quiz_generation_prompt()
+        return """
+        You are an Economics instructor preparing **scenario-based multiple-choice questions**.
+
+        Given the course: {course_name}, chapter: {chapter_name}, and keyword: {keyword}, generate one question that tests the **application of the concept in a real-world or policy scenario**.
+
+        ✦ If it's *Microeconomics*, consider:
+          - Firm behavior, pricing strategies, consumer decisions, externalities
+
+        ✦ For *Macroeconomics*, frame using:
+          - Policy shocks, IS-LM, AD-AS, Phillips Curve, output gap, interest rates
+
+        ✦ For *Central Banking*, use:
+          - Reactions to inflation/deflation
+          - Use of interest rate tools or liquidity management
+          - Transmission of monetary policy into the real economy
+
+        ✦ If the topic is *Foundations of financial risk management*, refer to:
+          - Basic concepts of financial risk management
+          - Portfolio risk management
+          - Advanced risk management
+          - Financial crisis and financial disasters
+          - Garp code of conduct
+
+        Guidelines:
+        - The question stem should be realistic and policy-grounded: e.g., *If the central bank raises interest rates...*
+        - Include **1 correct answer** and **3 distractors** based on common student mistakes
+        - Ensure all options are clear, mutually exclusive, and plausible
+
+        Format in JSON:
+
+        ```json
+        {{
+          "question": "...",
+          "options": ["A...", "B...", "C...", "D..."],
+          "answer": "A",
+          "explanation": "Why this option is correct given the scenario"
+        }}
+        ```
+
+        Output only the JSON.
+        """
 
     def chapter_quiz_generation_prompt(self):
-        subject_cls = self.get_subject_prompt_class()
-        return subject_cls.chapter_quiz_generation_prompt()
+        return """
+        You are an experienced instructor writing **chapter-based quiz questions** for an undergraduate Economics course.
 
+        Focus on this chapter: {chapter_name}. Generate {num_questions} questions.
 
-    class Macro:
-        
-        @staticmethod
-        def multiple_choice_definition_quiz_generation_prompt():
-            prompt = \
-            """
-            You are a macroeconomics instructor designing multiple-choice questions for undergraduate students.
-
-            Given the course: {course_name}, chapter: {chapter_name}, and concept: {keyword}, generate a well-structured multiple-choice question that assesses the student's **understanding of the term’s definition**.
-
-            Requirements:
-            1. Use a formal, exam-oriented tone based on standard textbooks (e.g., Dornbusch Macroeconomics or Gaokao-style summaries).
-            2. The question stem should begin with verbs like *Which of the following best defines...* or *What is the correct description of...*
-            3. Generate **one correct answer** and **three plausible distractors** that reflect typical student misunderstandings (e.g., mixing up GDP and GNP).
-            4. Distractors must be grammatically correct and not obviously wrong.
-            5. Format output using the JSON structure:
-
-            ```json
-            {{
-            "question": "...",
-            "options": ["A...", "B...", "C...", "D..."],
-            "answer": "B",
-            "explanation": "Explain briefly why B is correct and others are wrong."
-            }}
-            ```
-
-            Only output the JSON. Avoid footnotes or commentary.
-            """
-            return prompt
-        @staticmethod
-        def multiple_choice_expansion_quiz_generation_prompt():
-            prompt = \
-            """
-            You are a macroeconomics instructor preparing scenario-based multiple-choice questions.
-
-            Given the course: {course_name}, chapter: {chapter_name}, and keyword: {keyword}, create a multiple-choice question that **applies this concept to a real-world or policy scenario**.
-
-            Guidelines:
-            1. Frame the question based on macroeconomic models (e.g., IS-LM, AD-AS, Phillips Curve, etc.) or real policy actions (e.g., interest rate changes, taxation).
-            2. The stem should reflect exam language such as: *If the government increases spending...*, or *Under a fixed exchange rate system...*
-            3. Include **one correct answer** and **three realistic distractors** based on common confusion (e.g., short-run vs. long-run, inflation expectations, crowding-out).
-            4. Ensure options are mutually exclusive and conceptually clear.
-            5. Format output as valid JSON:
-
-            ```json
-            {{
-            "question": "...",
-            "options": ["A...", "B...", "C...", "D..."],
-            "answer": "C",
-            "explanation": "Explain the economic reasoning behind the correct choice."
-            }}
-            ```
-
-            Provide only the JSON result. No additional text.
-            """
-            return prompt
-
-
-
-
-    class Micro:
-        
-        @staticmethod
-        def chapter_quiz_generation_prompt():
-            prompt = """
-        You are an experienced economics instructor preparing a set of **quiz questions** for a university-level course based on *Pindyck's Microeconomics* textbook.
-
-        Focus on the following chapter: "{chapter_name}".
-
-        Please generate {num_questions} quiz questions that:
-        - Match the core concepts of the chapter
-        - Reflect the **style and depth** of undergraduate economics exams
-        - Are written clearly, with no ambiguity or overly complex language
-        - Vary in type (MCQ, True/False, Fill-in-the-blank), but all must be conceptually grounded
-        - Each question should target **one key idea or potential misconception**
-
-        Examples of key concept types include:
-        - Definitions (e.g., marginal cost, elasticity, Nash equilibrium)
-        - Graphical intuition (e.g., shape of indifference curve)
-        - Logical reasoning (e.g., "If X increases, what happens to Y?")
-        - Formula application (but no algebra-heavy math)
+        Your content may involve:
+        ✦ *Microeconomics*: supply/demand, cost structure, market behavior, welfare, consumer theory, game theory  
+        ✦ *Macroeconomics*: output determination, fiscal/monetary policy, inflation, unemployment, economic growth  
+        ✦ *Central Banking*: bank roles, policy tools, monetary transmission, institutional frameworks, Basel regulations
+        ✦ *Foundations of financial risk management*: basic concepts of financial risk management, portfolio risk management, advanced risk management, financial crisis and financial disasters, Garp code of conduct
 
         Instructions:
-        - Write each question followed by 4 answer choices (A–D), and indicate the correct one with "Answer: X"
-        - Avoid trick questions; instead, focus on **frequently misunderstood** or subtle points
-        - Use Markdown format (no code blocks), and bold the **correct answer** in explanations
+        - Use mixed formats (MCQ, True/False, Fill-in-the-blank)
+        - Each question should test **one important concept or common student confusion**
+        - Avoid trick questions; focus on clarity and conceptual depth
+        - Use Markdown format. Indicate answers clearly like:  
+          `Answer: B`
 
-        Base the content on the following chapter insights:
-
+        Do not include commentary or explanations unless asked.
         """
-            # You can dynamically insert the chapter highlights here (e.g., from Microeconomics Chapter 4)
-            return prompt
-
-    pass
