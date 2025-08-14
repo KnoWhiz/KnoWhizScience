@@ -12,7 +12,7 @@ class Language_ZeroshotPrompts(ZeroshotPrompts):
         You are a great language instructor,
         Here is a language learning topic: {extracted_course_name_domain}
         Generate a list of chapters for learning this topic. Avoid including any methodological chapter topics.
-        Make sure to include multiple language families and not just one.
+        Make sure to include multiple language families such as Indo-European, Sino-Tibetan, Afro-Asiatic.
         
 
         Note the "Course name" key should exactly match the topic or a suitably rephrased version.
