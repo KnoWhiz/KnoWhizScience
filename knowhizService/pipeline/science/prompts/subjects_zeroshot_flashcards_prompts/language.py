@@ -13,6 +13,7 @@ class Language_ZeroshotPrompts(ZeroshotPrompts):
         Here is a language learning topic: {extracted_course_name_domain}
         Generate a list of chapters for learning this topic. Avoid including any methodological chapter topics.
         Make sure to include multiple language families such as Indo-European, Sino-Tibetan, Afro-Asiatic.
+        One flashcard must use an English sentence example and and compare it to a afro-asiatic language.
         
 
         Note the "Course name" key should exactly match the topic or a suitably rephrased version.
