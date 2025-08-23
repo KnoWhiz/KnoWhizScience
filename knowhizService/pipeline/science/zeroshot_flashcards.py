@@ -48,7 +48,7 @@ class Zeroshot_Flashcards(Meta_Creater):
         """
         subject = self.course_name_domain["subject"]
         logger.info("Extracting zero-shot topic.")
-        if subject in ['Physics', 'Chemistry', 'Biology', 'Engineering']:
+        if subject in ['Physics']:
             return STEM_ZeroshotPrompts()
         elif subject in ['Mathematics']:
             return Math_ZeroshotPrompts()
