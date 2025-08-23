@@ -26,6 +26,97 @@ class STEM_ZeroshotPrompts(ZeroshotPrompts):
         •    Information Technology
     """
     
+  @staticmethod
+    # Step 2: Chapters generation
+    def chapters_generation_prompt():
+        """
+        Prompt for generating chapters based on the zero-shot topic.
+        """
+        prompt = \
+        """
+        You are a great STEM instructor specializing in Physics,
+        Here is a STEM learning topic: {extracted_course_name_domain}
+        Generate a list of chapters for learning this topic. Focus on fundamental concepts and practical applications.
+        Make sure to include multiple physics branches and not just one.
+        
+        Note the "Course name" key should exactly match the topic or a suitably rephrased version.
+
+        Output your response in **valid JSON format only**, using the structure:
+
+        {{
+        "Course name": "Your Course Title Here",
+        "Chapters": [
+            "🔬 Chapter 1",
+            "⚡ Chapter 2",
+            "🧪 Chapter 3",
+            "📐 Chapter 4",
+            "⚖️ Chapter 5",
+            "🔄 Chapter 6",
+            "🌌 Chapter 7",
+            "📊 Chapter 8"
+        ]
+        }}
+        """
+        return prompt
+
+    @staticmethod
+    # Step 3: Keywords generation for each chapter
+    def keywords_generation_prompt():
+        """
+        Prompt for generating keywords for each chapter.
+        """
+        prompt = \
+        """
+        You are a great STEM instructor specializing in Physics,
+        Generate keywords for the chapter: {chapter_name} in the course: {course_name}.
+        Focus on fundamental physics concepts, laws, formulas, and practical applications.
+        
+        Output your response in **valid JSON format only**, using the structure:
+
+        {{
+        "keywords": [
+            {{
+                "keyword": "Newton's Second Law",
+                "category": "Law",
+                "importance": "High"
+            }},
+            {{
+                "keyword": "F = ma",
+                "category": "Formula",
+                "importance": "High"
+            }},
+            {{
+                "keyword": "Free Body Diagram",
+                "category": "Method",
+                "importance": "Medium"
+            }}
+        ]
+        }}
+        """
+        return prompt
+
+    @staticmethod
+    # Step 4: Flashcards definition generation
+    def flashcards_definition_generation_prompt():
+        """
+        Prompt for generating flashcards definitions.
+        """
+        prompt = \
+        """
+        You are a great STEM instructor specializing in Physics,
+        Create a precise definition for the keyword: {keyword} in the context of {course_name}, chapter: {chapter_name}.
+        
+        **Requirements:**
+        1. Use precise physics terminology and correct mathematical notation
+        2. Include essential components, units, and relationships
+        3. Use proper LaTeX notation for formulas: $E = mc^2$ for inline, $$F = ma$$ for display
+        4. Maximum 150 words
+        5. Use bold formatting for key terms
+        
+        Output your response in **valid Markdown format only**.
+        """
+        return prompt
+
     @staticmethod
     # Step 5: Flashcards expansion generation
     def flashcards_expansion_generation_prompt():
@@ -52,9 +143,9 @@ class STEM_ZeroshotPrompts(ZeroshotPrompts):
         8. Format the entire response as valid Markdown.
         ---
         **Formatting and Content Guidelines:**
-        1. The section name is 'Example', which only includes a real world example to help memorize and understand the keyword in {course_name}.
+        1. The section name is 'Examples', which only includes real-world examples to help memorize and understand the keyword in {course_name}.
         2. Please do not provide the definition of the keyword in the example.
-        3. Within the example, provide a step-by-step breakdown only if it significantly enhances memorization and understanding of the concept.
+        3. Within each example, provide a clear step-by-step breakdown to enhance memorization and understanding of the concept.
         4. Within the example, if you need to display formulas, include them in LaTeX syntax formatted in markdown, as shown below:
             ----------------
             $$
